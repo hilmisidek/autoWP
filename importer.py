@@ -1,6 +1,6 @@
 import pandas as pd
 import openpyxl
-plan=pd.read_excel('effectivecopy.xlsx')
+plan=pd.read_excel('tester.xlsx')
 
 def importer():
         #print(plan)
