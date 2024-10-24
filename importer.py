@@ -1,6 +1,6 @@
 import pandas as pd
 import openpyxl
-plan=pd.read_excel('tester.xlsx')
+plan=pd.read_excel('effectivecopy.xlsx')
 
 def importer():
         #print(plan)
@@ -22,4 +22,4 @@ def exporter(response):
                 response_df.to_excel(writer,sheet_name='Response',index=False)
 
 
-print (plan)
+#print (plan)
