@@ -13,11 +13,14 @@ steps:
 - script: echo Hello, world!
 - script: pip install pandas
 - script: pip install openpyxl
+- script: pip install -q -U google-generativeai
+- script: pip install requests
+
   displayName: 'Run a one-line script'
 - task: PythonScript@0
   inputs:
     scriptSource: 'filePath'
-    scriptPath: 'importer.py'
+    scriptPath: 'gemini.py'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
