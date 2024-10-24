@@ -8,8 +8,14 @@ from requests.auth import HTTPBasicAuth
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import base64
 import importer as data
+from datetime import timedelta
+from datetime import date
 
+today=date.today()
+print (today)
 
+day_count=today.timetuple().tm_yday
+print (f"day_count= {day_count}")
 
 API_KEY='AIzaSyALWdiUdBh0BFnrYTTNkc131ApjkDST8hY'
 genai.configure(api_key=API_KEY)
@@ -20,19 +26,19 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 title_array = data.importer()
 size=len(title_array)
 
-f=open("rowcount.txt","r")
-counter=int(f.read())
+#f=open("rowcount.txt","r")
+counter=day_count
 print (f"Row= {counter}")
-f.close()
+#f.close()
 
 
-f=open("rowcount.txt","w")
-if (counter-1==size):
-    updater=2
-else:
-    updater=counter+1
-f.write(str(updater))
-f.close()
+#f=open("rowcount.txt","w")
+#if (counter-1==size):
+ #   updater=2
+#else:
+    #updater=counter+1
+#f.write(str(updater))
+#f.close()
 
 
 
@@ -84,15 +90,7 @@ def push_to_wp(title, content) :
         data=payload
      )
 
-#tart=0
-#end=10
-#run=1
-#if size < end :
- #   end=size
-response=[]
-#while (run < size):
- #   for execute in range (start,end) :
-  #      print (execute)
+
 run=counter-2
 print (f"Index = {run}")
 prompt = opening + title_array[run]
