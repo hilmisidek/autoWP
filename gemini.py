@@ -69,6 +69,8 @@ def push_to_wp(title, content) :
 start=0
 end=10
 run=1
+if size < end :
+    end=size
 #response=[]
 while (run < size):
     for execute in range (start,end) :
