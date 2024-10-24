@@ -9,9 +9,12 @@ from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import base64
 import importer as data
 from datetime import timedelta
+from datetime import datetime
 from datetime import date
+import pytz
 
-today=date.today()
+
+today = datetime.now(pytz.timezone('Australia/Sydney'))
 print (today)
 
 day_count=today.timetuple().tm_yday
@@ -26,19 +29,9 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 title_array = data.importer()
 size=len(title_array)
 
-#f=open("rowcount.txt","r")
 counter=day_count
 print (f"Row= {counter}")
-#f.close()
 
-
-#f=open("rowcount.txt","w")
-#if (counter-1==size):
- #   updater=2
-#else:
-    #updater=counter+1
-#f.write(str(updater))
-#f.close()
 
 
 
@@ -95,24 +88,12 @@ run=counter-2
 print (f"Index = {run}")
 prompt = opening + title_array[run]
 print (f"Prompt: {prompt}")
-        #run=run+1
-#response.append(prompt)
+        
 content=prompter(prompt)     
 push_to_wp(title_array[run],content)
 print (f"Response \nTITLE: {title_array[run]}")
-#print (f"\nCONTENT: {content}")
-    #sleep(60)
-    #start=end
-   # print (f"start: {start}")
-  #  end = start + 10
-  #  if (end>size):
-    #    end=size
-  #  print (f"end: {end}")
-
-#data.exporter(response)
-    
+  
 
 
 
 
-#print("response",response.text)
