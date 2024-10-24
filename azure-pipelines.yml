@@ -12,6 +12,7 @@ pool:
 steps:
 - script: echo Hello, world!
 - script: pip install pandas
+- script: pip install openpyxl
   displayName: 'Run a one-line script'
 - task: PythonScript@0
   inputs:
