@@ -12,11 +12,17 @@ import base64
 
 import importer as data
 
-API_KEY='AIzaSyALWdiUdBh0BFnrYTTNkc131ApjkDST8hY'
+#GEMINI API
+API_KEY=#[Insert you gemini API KEY]
 genai.configure(api_key=API_KEY)
+
+#Prompt
 open="Create a seo optimized blog post with 600 words focusing on copywriting, mindset and psychology keywords to answer this question: "
+
+#wordpress category id
 cat_id=6
 
+#Gemini model
 model = genai.GenerativeModel("gemini-1.5-flash")
 title_array = data.importer()
 size=len(title_array)
@@ -32,16 +38,23 @@ def prompter(prompt):
     content = response.text
     content=content.replace("*","")
     return content
+
+#wp API
 def push_to_wp(title, content) :   
     
-    username = "zalikamari@gmail.com"
-    pass_word = "r64y yXUy vqHR xr9f rTwl ehk3"
+    username = #[wordpress API username]
+    pass_word = #[wordpress API password]
     credentials = username + ':' + pass_word
     token = base64.b64encode(credentials.encode())
-    wpBaseUrl="https://copymindset.com"
+    wpBaseUrl=#[Your baseURL]
+
+    #modify to your url schema
     WP_url = wpBaseUrl + "/wp-json/wp/v2/posts"
+
+    #debug
     print (WP_url)
 
+    #API Headers
     headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -51,7 +64,7 @@ def push_to_wp(title, content) :
         }
 
 
-
+    #API Payload
     payload = json.dumps({ 
            "status":"publish",
            "title": title,
@@ -66,12 +79,14 @@ def push_to_wp(title, content) :
         data=payload
      )
 
+#running number - excel row
 start=0
 end=10
 run=1
+
 if size < end :
     end=size
-#response=[]
+
 while (run < size):
     for execute in range (start,end) :
         print (execute)
@@ -86,6 +101,8 @@ while (run < size):
     sleep(60)
     start=end
     print (f"start: {start}")
+
+    #
     end = start + 10
     if (end>size):
         end=size
