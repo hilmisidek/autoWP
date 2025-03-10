@@ -1,3 +1,5 @@
+#generate and push wp post daily using row number generated from current number of day in year
+
 import json
 from time import sleep
 import requests
@@ -13,28 +15,35 @@ from datetime import datetime
 from datetime import date
 import pytz
 
-
+#get datetime today for row processing
 today = datetime.now(pytz.timezone('Australia/Sydney'))
 print (today)
 
 day_count=today.timetuple().tm_yday
 print (f"day_count= {day_count}")
 
-API_KEY='AIzaSyALWdiUdBh0BFnrYTTNkc131ApjkDST8hY'
+
+API_KEY='#Gemini AI API Key'
 genai.configure(api_key=API_KEY)
+
+#Opening prompt
 opening="Create a seo optimized blog post with 600 words focusing on copywriting, mindset and psychology keywords to answer this question: "
+
+#Wordpress category Id
 cat_id=6
 
+#GEMINI model
 model = genai.GenerativeModel("gemini-1.5-flash")
+
+#get title from excel
 title_array = data.importer()
+
+#determine current size
 size=len(title_array)
 
+#get row number = day_count
 counter=day_count
 print (f"Row= {counter}")
-
-
-
-
 
 print(f"size: {size} ")
 
@@ -51,11 +60,12 @@ def prompter(prompt):
 
 def push_to_wp(title, content) :   
     
-    username = "zalikamari@gmail.com"
-    pass_word = "r64y yXUy vqHR xr9f rTwl ehk3"
+    username = 'wordpress API Username'
+    pass_word = "wordpress API Password"
     credentials = username + ':' + pass_word
     token = base64.b64encode(credentials.encode())
-    wpBaseUrl="https://copymindset.com"
+    
+    wpBaseUrl="yourbaseurl.com"
     WP_url = wpBaseUrl + "/wp-json/wp/v2/posts"
     print (WP_url)
 
@@ -83,14 +93,20 @@ def push_to_wp(title, content) :
         data=payload
      )
 
-
+#generate row number
 run=counter-2
 print (f"Index = {run}")
+
+#generate final prompt
 prompt = opening + title_array[run]
 print (f"Prompt: {prompt}")
-        
+
+#call prompter method
 content=prompter(prompt)     
+
+#call push_to_wp method
 push_to_wp(title_array[run],content)
+
 print (f"Response \nTITLE: {title_array[run]}")
   
 
