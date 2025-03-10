@@ -1,3 +1,5 @@
+#generate array of wp post
+
 import json
 from time import sleep
 
