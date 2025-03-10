@@ -14,9 +14,10 @@ AutoWP is a Python-based project designed to automate wordpress posting harnessi
 
 ## Features
 - **Data Importing:** Use `importer.py` to automate the import of data.
-- **Data Processing:** Utilize `gemini.py` and `single.py` for data processing tasks.
+- **Data Processing:** Utilize `single.py` for data processing tasks.
 - **Excel Integration:** Includes an Excel file (`effectivecopy.xlsx`) for data handling and processing.
 - **CI/CD Pipeline:** Integrates with CI/CD Pipelines for continuous integration and deployment.
+- **Testing:** Use `gemini.py` to test your API configuration
 
 ## Technologies Used
 - Python
