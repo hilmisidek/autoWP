@@ -4,11 +4,11 @@ import json
 from requests.auth import HTTPBasicAuth
 import base64
 
+#Starter file using open AI and wordpress API
 
-
-API_KEY = "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"
-username = "zalikamari@gmail.com"
-pass_word = "r64y yXUy vqHR xr9f rTwl ehk3"
+API_KEY = #openAI API Key
+username = #wordpress APi username
+pass_word = #wordpress APUI Password
 credentials = username + ':' + pass_word
 token = base64.b64encode(credentials.encode())
 wpBaseUrl="https://copymindset.com"
