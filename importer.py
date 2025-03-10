@@ -1,5 +1,7 @@
 import pandas as pd
 import openpyxl
+
+#read excel file
 plan=pd.read_excel('effectivecopy.xlsx')
 
 def importer():
@@ -13,6 +15,7 @@ def importer():
          #       print (f"Title Prompt= {title_array[drive]}")          
         return title_array
 
+#can ignore for the time being
 def exporter(response):
         response_df=pd.DataFrame(
                 data=response,
